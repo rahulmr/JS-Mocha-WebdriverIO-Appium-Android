@@ -5,7 +5,7 @@
   "main": "",
   "repository": {
     "type": "git",
-    "url": "git@github.com:rahulmr/JS-Mocha-WebdriverIO.git"
+    "url": "git@github.com:rahulmr/wdio-mocha-appium.git"
   },
   "scripts": {
     "pretest": "npm install",
