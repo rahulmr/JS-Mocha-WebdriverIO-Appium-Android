@@ -3,19 +3,27 @@
   "version": "0.0.1",
   "description": "Parallel tests with Mocha and Webdriverio  =============",
   "main": "",
-  "repository" :
-  { "type" : "git"
-  , "url" : "git@github.com:saucelabs-sample-test-frameworks/JS-Mocha-WebdriverIO.git"
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:rahulmr/JS-Mocha-WebdriverIO.git"
   },
   "scripts": {
-    "test": "./node_modules/.bin/wdio wdio.conf.js"
-    },
+    "pretest": "npm install",
+    "test": "wdio wdio.conf.js",
+    "posttest": "allure report clean && allure generate allure-results -o allure-report && allure report open"
+  },
   "dependencies": {
-    "webdriverio": "*",
+    "allure-commandline": "^1.4.23",
+    "appium": "^1.5.3",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
     "parallel-mocha": "*",
-    "mocha": "*",
-    "chai": "*",
-    "wdio-mocha-framework": "^0.3.10",
-    "wdio-sauce-service": "~0.1"
+    "wdio-allure-reporter": "^0.1.2",
+    "wdio-appium-service": "^0.2.2",
+    "wdio-mocha-framework": "^0.5.8",
+    "wdio-sauce-service": "~0.1",
+    "wdio-spec-reporter": "0.0.5",
+    "wdio-sync": "^0.6.10",
+    "webdriverio": "^4.6.1"
   }
 }

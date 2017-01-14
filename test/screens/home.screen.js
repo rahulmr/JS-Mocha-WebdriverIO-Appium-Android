@@ -1,9 +1,9 @@
 /**
  * Created by titusfortner on 11/23/16.
  */
-var Page = require('./page');
+var Screen = require('./screen');
 
-var HomePage = Object.create(Page, {
+var HomeScreen = Object.create(Screen, {
     graphicsTab: {
         get: function () {
             return browser.element(`~Graphics`);
@@ -24,4 +24,4 @@ var HomePage = Object.create(Page, {
 
 });
 
-module.exports = HomePage;
+module.exports = HomeScreen;

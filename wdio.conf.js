@@ -1,5 +1,8 @@
 exports.config = {
 
+    host: '127.0.0.1',
+    port: 4723,
+
     //
     // =================
     // Service Providers
@@ -7,9 +10,9 @@ exports.config = {
     // WebdriverIO supports Sauce Labs, Browserstack, and Testing Bot (other cloud providers
     // should work too though). These services define specific user and key (or access key)
     // values you need to put in here in order to connect to these services.
-    //
-    user: process.env.SAUCE_USERNAME,
-    key: process.env.SAUCE_ACCESS_KEY,
+    // //
+    // user: process.env.SAUCE_USERNAME,
+    // key: process.env.SAUCE_ACCESS_KEY,
 
 
     //
@@ -22,7 +25,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './tests/*.js'
+        './test/specs/*.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -44,7 +47,7 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 40,
+    maxInstances: 1,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -56,26 +59,27 @@ exports.config = {
         // 5 instance gets started at a time.
         //maxInstances: 5,
         //
+        // {
+        //     browserName: '',
+        //     appiumVersion: '1.6.3',
+        //     deviceName: 'LS-4005',
+        //     deviceOrientation: 'portrait',
+        //     platformVersion: '5.1',
+        //     platformName: 'Android',
+        //     app: 'https://github.com/appium/sample-code/blob/master/sample-code/apps/ApiDemos/bin/ApiDemos-debug.apk?raw=true',
+        //     waitforTimeout: 30000,
+        //     commandTimeout: 30000
+        // },
         {
             browserName: '',
-            appiumVersion: '1.4.16',
-            deviceName: 'Samsung Galaxy S4 Emulator',
-            deviceOrientation: 'portrait',
-            platformVersion: '4.4',
-            platformName: 'Android',
-            app: 'https://github.com/appium/sample-code/blob/master/sample-code/apps/ApiDemos/bin/ApiDemos-debug.apk?raw=true',
-            waitforTimeout: 300,
-            commandTimeout: 300
-        }, {
-            browserName: '',
-            appiumVersion: '1.4.16',
+            appiumVersion: '1.6.3',
             deviceName: 'Android Emulator',
             deviceOrientation: 'portrait',
             platformVersion: '5.1',
             platformName: 'Android',
             app: 'https://github.com/appium/sample-code/blob/master/sample-code/apps/ApiDemos/bin/ApiDemos-debug.apk?raw=true',
-            waitforTimeout: 300,
-            commandTimeout: 300
+            waitforTimeout: 30000,
+            commandTimeout: 30000
         }
     ],
     //
@@ -100,7 +104,7 @@ exports.config = {
     //
     // Set a base URL in order to shorten url command calls. If your url parameter starts
     // with "/", then the base url gets prepended.
-    baseUrl: 'http://saucelabs.github.io',
+    baseUrl: 'http://webdriver.io',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -134,7 +138,16 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['sauce'],
+    services: ['appium'],
+    appium: {
+        args: {
+            // address: '127.0.0.1',
+            // port: 4723,
+            commandTimeout: '7200',
+            sessionOverride: true,
+            debugLogSpacing: true
+        }
+    },
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: http://webdriver.io/guide/testrunner/frameworks.html
@@ -147,17 +160,23 @@ exports.config = {
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/testrunner/reporters.html
     // reporters: ['dot'],
-    reporters: ['dot'],
-    reporterOptions: {
-        outputDir: './'
-    },
+    reporters: ['spec', 'allure'],
+
+    // reporterOptions: {
+    //     allure: 
+    //     {
+    //         outputDir: 'allure-results'
+    //     }
+    // },
 
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
     //
 
     mochaOpts: {
-        ui: 'bdd'
+        ui: 'bdd',
+        timeout: 999999,
+        fullTrace: true
     },
     // =====
     // Hooks

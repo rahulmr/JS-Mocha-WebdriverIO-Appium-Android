@@ -1,9 +1,9 @@
 /**
  * Created by titusfortner on 11/23/16.
  */
-var Page = require('./page');
+var Screen = require('./screen');
 
-var MenuPage = Object.create(Page, {
+var MenuScreen = Object.create(Screen, {
     arcsEntry: {
         get: function () {
             return browser.element(`~Arcs`);
@@ -11,4 +11,4 @@ var MenuPage = Object.create(Page, {
     }
 });
 
-module.exports = MenuPage;
+module.exports = MenuScreen;
