@@ -3,6 +3,11 @@ logs
 *.log
 npm-debug.log*
 
+# Allure results
+allure-results
+allure-report
+errorShots
+
 # Runtime data
 pids
 *.pid
