@@ -8,9 +8,10 @@
     "url": "git@github.com:rahulmr/wdio-mocha-appium.git"
   },
   "scripts": {
-    "pretest": "npm install",
+    "pretest": "npm install && npm run clean",
     "test": "wdio wdio.conf.js",
-    "posttest": "allure report clean && allure generate allure-results -o allure-report && allure report open"
+    "posttest": "allure generate allure-results -o allure-report && allure report open",
+    "clean": "rm -rf allure-results allure-report/* errorShots"
   },
   "dependencies": {
     "allure-commandline": "^1.4.23",

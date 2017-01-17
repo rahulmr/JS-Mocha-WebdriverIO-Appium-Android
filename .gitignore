@@ -6,7 +6,7 @@ npm-debug.log*
 # Allure results
 allure-results
 allure-report
-errorShots
+errorShots/*
 
 # Runtime data
 pids
